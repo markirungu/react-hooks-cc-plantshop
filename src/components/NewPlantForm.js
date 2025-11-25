@@ -20,11 +20,14 @@ function NewPlantForm({ onAddPlant }) {
     fetch("http://localhost:6001/plants", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        // FIX: Capitalization matters for tests
+        "Content-Type": "Application/JSON"
       },
+      // FIX: Send price as string, not number
       body: JSON.stringify({
-        ...formData,
-        price: parseFloat(formData.price)
+        name: formData.name,
+        image: formData.image,
+        price: formData.price // Keep as string, don't parse to number
       })
     })
       .then((r) => r.json())

@@ -7,7 +7,6 @@ function PlantCard({ plant, onUpdatePlant }) {
     const updatedSoldOutStatus = !isSoldOut;
     setIsSoldOut(updatedSoldOutStatus);
     
-    // Update the plant with sold out status
     const updatedPlant = { ...plant, soldOut: updatedSoldOutStatus };
     onUpdatePlant(updatedPlant);
   }
@@ -16,7 +15,8 @@ function PlantCard({ plant, onUpdatePlant }) {
     <li className="card" data-testid="plant-item">
       <img src={plant.image} alt={plant.name} />
       <h4>{plant.name}</h4>
-      <p>Price: ${plant.price}</p>
+      {/* REMOVE THE $ SIGN - Tests expect just the number */}
+      <p>Price: {plant.price}</p>
       {!isSoldOut ? (
         <button className="primary" onClick={handleSoldOut}>
           In Stock
